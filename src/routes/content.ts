@@ -11,7 +11,7 @@ const contentRouter = Router();
 contentRouter
   .route("/content")
   .get(isLoggedIn, allContent)
-  .post(addContent)
-  .delete(deleteContent);
+  .post(isLoggedIn, addContent)
+  .delete(isLoggedIn, deleteContent);
 
 export default contentRouter;

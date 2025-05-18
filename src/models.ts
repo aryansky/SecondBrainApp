@@ -26,7 +26,7 @@ const contentSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ["video", "image", "documents", "tweet", "link"],
+    enum: ["video", "image", "document", "tweet", "link"],
     require: true,
   },
   title: {
