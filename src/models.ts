@@ -1,5 +1,11 @@
 import mongoose, { Schema } from "mongoose";
-mongoose.connect("mongodb://127.0.0.1:27017/test");
+import "dotenv/config";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL!).then(() => {
+  console.log("Successfully connected to the database!");
+});
 
 const userSchema = new Schema({
   username: {
@@ -20,17 +26,19 @@ const contentSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ["video", "image", "article", "audio"],
+    enum: ["video", "image", "documents", "tweet", "link"],
     require: true,
   },
   title: {
     type: String,
     require: true,
   },
-  tags: {
-    type: Schema.Types.ObjectId,
-    ref: "Tags",
-  },
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tags",
+    },
+  ],
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
