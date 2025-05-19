@@ -10,28 +10,28 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 const userSchema = new Schema({
   username: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 
 const contentSchema = new Schema({
   link: {
     type: String,
-    require: true,
+    required: true,
   },
   type: {
     type: String,
     enum: ["video", "image", "document", "tweet", "link"],
-    require: true,
+    required: true,
   },
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   tags: [
     {
@@ -42,26 +42,27 @@ const contentSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
 });
 
 const tagsSchema = new Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
 });
 
 const linkSchema = new Schema({
-  hash: {
+  shareId: {
     type: String,
-    require: true,
+    required: true,
   },
   userId: {
     type: Schema.Types.ObjectId,
-    require: true,
+    ref: "User",
+    required: true,
   },
 });
 
