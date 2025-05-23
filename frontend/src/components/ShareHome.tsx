@@ -54,7 +54,7 @@ export default function ShareHome() {
           <h2 className="text-nowrap p-4 text-3xl font-bold text-gray-700">
             You are viewing the notes of{" "}
             <span className="text-red-600">
-              {content.length !== 0 && content[0].userId?.username}
+              {content.length !== 0 && content[0]["userId"]["username"]}
             </span>
           </h2>
           <div className="flex w-full justify-end">
@@ -137,10 +137,10 @@ export default function ShareHome() {
             return (
               <ContentCard
                 key={index}
-                title={con.title}
-                link={con.link}
-                tags={con.tags}
-                type={con.type}
+                title={con["title"]}
+                link={con["link"]}
+                tags={con["tags"]}
+                type={con["type"]}
               />
             );
           })}

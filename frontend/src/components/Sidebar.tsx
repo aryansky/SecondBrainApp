@@ -1,14 +1,20 @@
-import { useState } from "react";
 import ButtonLight from "./ButtonLight";
+
+interface SidebarTypes {
+  setContent: React.Dispatch<React.SetStateAction<never[]>>;
+  getContent: () => void;
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
+}
 
 export default function Sidebar({
   setContent,
   getContent,
   selected,
   setSelected,
-}) {
+}: SidebarTypes) {
   return (
-    <div className="border-r-2 border-gray-300 h-screen fixed w-1/6 min-w-80 pr-4 ">
+    <div className="border-r-2 border-gray-300 h-screen fixed  min-w-80 pr-4 ">
       <h1 className="text-3xl font-bold text-gray-700 text-center py-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +51,7 @@ export default function Sidebar({
           await getContent();
           setContent((contentArr) => {
             return contentArr.filter((content) => {
-              return content.type === "tweet";
+              return content["type"] === "tweet";
             });
           });
           setSelected("tweet");
@@ -68,7 +74,7 @@ export default function Sidebar({
           await getContent();
           setContent((contentArr) => {
             return contentArr.filter((content) => {
-              return content.type === "video";
+              return content["type"] === "video";
             });
           });
           setSelected("video");
@@ -91,7 +97,7 @@ export default function Sidebar({
           await getContent();
           setContent((contentArr) => {
             return contentArr.filter((content) => {
-              return content.type === "document";
+              return content["type"] === "document";
             });
           });
           setSelected("document");
@@ -114,7 +120,7 @@ export default function Sidebar({
           await getContent();
           setContent((contentArr) => {
             return contentArr.filter((content) => {
-              return content.type === "link";
+              return content["type"] === "link";
             });
           });
           setSelected("link");

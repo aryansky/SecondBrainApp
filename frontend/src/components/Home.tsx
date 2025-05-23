@@ -179,7 +179,7 @@ export default function Home() {
               onClose={() => {
                 setSignOutConfirm(false);
               }}
-              borderColour="border-red-500"
+              borderColour="border-transparent"
             >
               <div className="w-[24rem] m-4">
                 <h2 className="text-3xl font-bold text-center">
