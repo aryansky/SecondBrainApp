@@ -12,14 +12,15 @@ function generateUID() {
 
 export async function shareHandler(req: Request, res: Response) {
   try {
-    const foundUser = req.body.foundUser;
+    //@ts-ignore
+    const foundUser = req.foundUser;
     const foundLink = await Link.findOne({
       userId: foundUser._id,
     });
 
     if (foundLink) {
       res.json({
-        link: `https://localhost:3000/api/v1/brain/${foundLink.shareId}`,
+        shareId: foundLink.shareId,
       });
       return;
     }
@@ -32,10 +33,10 @@ export async function shareHandler(req: Request, res: Response) {
     });
 
     res.json({
-      link: `https://localhost:3000/api/v1/brain/${generatedLink.shareId}`,
+      shareId: generatedLink.shareId,
     });
   } catch (e) {
-    res.json({ msg: "Something went wrong", err: e });
+    res.status(403).json({ msg: "Something went wrong", err: e });
   }
 }
 

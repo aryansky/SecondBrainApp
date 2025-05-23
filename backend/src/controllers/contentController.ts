@@ -6,7 +6,8 @@ import errorMap from "zod/lib/locales/en";
 // Send all created content, TODO - add exception handling
 export async function allContent(req: Request, res: Response) {
   try {
-    const foundUser = req.body.foundUser;
+    //@ts-ignore
+    const foundUser = req.foundUser;
     const contents = await Content.find({ userId: foundUser._id });
     res.json({
       message: "Here are your contents",
@@ -38,7 +39,8 @@ export async function addContent(req: Request, res: Response) {
       type,
       title,
       tags,
-      userId: req.body.foundUser._id,
+      //@ts-ignore
+      userId: req.foundUser._id,
     });
     res.json({
       content: response,

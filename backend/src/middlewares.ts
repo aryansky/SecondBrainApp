@@ -14,10 +14,11 @@ export async function isLoggedIn(
       process.env.JWT_SECRET!
     ) as jwt.JwtPayload;
     const foundUser = await User.findById(decodedData.id);
-    req.body.foundUser = foundUser;
+    //@ts-ignore
+    req.foundUser = foundUser;
     next();
   } catch (e) {
-    res.json({
+    res.status(403).json({
       msg: "You must be signed in to access this page",
       err: e,
     });

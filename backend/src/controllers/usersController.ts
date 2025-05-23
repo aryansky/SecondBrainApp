@@ -19,7 +19,7 @@ export async function userSignUp(req: Request, res: Response) {
       });
       res.json({ msg: "Sign up successfull" });
     } catch (e) {
-      res.json({
+      res.status(403).json({
         msg: "Username already taken!",
       });
     }
@@ -46,10 +46,10 @@ export async function userSignIn(req: Request, res: Response) {
           token: jwt.sign({ id: foundUser?._id }, process.env.JWT_SECRET!),
         });
       } else {
-        res.json({ msg: "Username or password was wrong" });
+        res.status(403).json({ msg: "Username or password was wrong" });
       }
     } catch (e) {
-      res.json({
+      res.status(403).json({
         msg: "Username or password was wrong",
       });
     }

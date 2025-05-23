@@ -4,7 +4,7 @@ import { isLoggedIn } from "../middlewares";
 
 const shareRouter = Router();
 
-shareRouter.get("/brain/share", isLoggedIn, shareHandler);
+shareRouter.post("/brain/share", isLoggedIn, shareHandler);
 
 shareRouter.get("/brain/:shareId", shareIdContents);
 
